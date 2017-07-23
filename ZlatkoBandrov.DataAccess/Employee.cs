@@ -28,7 +28,7 @@ namespace ZlatkoBandrov.DataAccess
         public int Age { get; set; }
         public int RoleID { get; set; }
         public Nullable<int> ManagerID { get; set; }
-        public int TeamID { get; set; }
+        public int ExternalID { get; set; }
     
         public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

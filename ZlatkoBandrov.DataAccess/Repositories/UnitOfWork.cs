@@ -16,6 +16,24 @@ namespace ZlatkoBandrov.DataAccess.Repositories
             get { return this._employeeRepository ?? (this._employeeRepository = new GenericRepository<Employee>(FourthDbContext)); }
         }
 
+        private GenericRepository<Role> _roleRepository;
+        public GenericRepository<Role> RoleRepository
+        {
+            get { return this._roleRepository ?? (this._roleRepository = new GenericRepository<Role>(FourthDbContext)); }
+        }
+
+        private GenericRepository<Team> _teamRepository;
+        public GenericRepository<Team> TeamRepository
+        {
+            get { return this._teamRepository ?? (this._teamRepository = new GenericRepository<Team>(FourthDbContext)); }
+        }
+
+        private GenericRepository<EmployeeArrival> _employeeArrivalRepository;
+        public GenericRepository<EmployeeArrival> EmployeeArrivalRepository
+        {
+            get { return this._employeeArrivalRepository ?? (this._employeeArrivalRepository = new GenericRepository<EmployeeArrival>(FourthDbContext)); }
+        }
+
         #endregion
 
         public void Rollback()

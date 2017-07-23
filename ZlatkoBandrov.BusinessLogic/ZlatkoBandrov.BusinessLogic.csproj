@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\DAOConverter.cs" />
     <Compile Include="Managers\ArrivalTrackerManager.cs" />
     <Compile Include="Managers\EmployeeManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

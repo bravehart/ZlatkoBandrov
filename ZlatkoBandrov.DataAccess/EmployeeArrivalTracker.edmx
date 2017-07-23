@@ -4,19 +4,19 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EmployeeArrivalTrackerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EmployeeArrivalTrackerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExternalID" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Surename" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Age" Type="int" Nullable="false" />
           <Property Name="RoleID" Type="int" Nullable="false" />
           <Property Name="ManagerID" Type="int" />
-          <Property Name="TeamID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="EmployeeArrival">
           <Key>
@@ -119,8 +119,7 @@
             <End Role="EmployeeTeams" EntitySet="EmployeeTeams" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EmployeeArrivalTrackerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -135,10 +134,10 @@
           <Property Name="Age" Type="Int32" Nullable="false" />
           <Property Name="RoleID" Type="Int32" Nullable="false" />
           <Property Name="ManagerID" Type="Int32" />
-          <Property Name="TeamID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Role" Relationship="Self.FK_Employee_Role" FromRole="Employee" ToRole="Role" />
           <NavigationProperty Name="EmployeeArrivals" Relationship="Self.FK_EmployeeArrival_Employee" FromRole="Employee" ToRole="EmployeeArrival" />
           <NavigationProperty Name="EmployeeTeams" Relationship="Self.FK_EmployeeTeams_Employee" FromRole="Employee" ToRole="EmployeeTeams" />
+          <Property Name="ExternalID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="EmployeeArrival">
           <Key>
@@ -255,6 +254,7 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="EmployeeArrivalTrackerModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="ExternalID" ColumnName="ExternalID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Surename" ColumnName="Surename" />
@@ -262,7 +262,6 @@
                 <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
-                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

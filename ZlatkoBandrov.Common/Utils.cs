@@ -35,10 +35,9 @@ namespace ZlatkoBandrov.Common
                 return null;
             }
 
-            string dateFormat = "yyyy-MM-ddTHH:mm:ssZ";
-            DateTime tokenExpires = DateTime.MinValue;
+            DateTime tokenExpires = ParseDateFromUniversal(result.Expires);
             TokenData newTokenData = null;
-            if (DateTime.TryParseExact(result.Expires, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out tokenExpires))
+            if (tokenExpires > DateTime.MinValue)
             {
                 newTokenData = new TokenData { Token = result.Token, Expires = tokenExpires };
             }
@@ -52,6 +51,14 @@ namespace ZlatkoBandrov.Common
             string tokenValue = token.Value != null ? token.Value.FirstOrDefault() : null;
 
             return tokenValue;
+        }
+
+        public static DateTime ParseDateFromUniversal(string dateTimeText)
+        {
+            string dateFormat = "yyyy-MM-ddTHH:mm:ssZ";
+            DateTime convertedDate = DateTime.MinValue;
+            DateTime.TryParseExact(dateTimeText, dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out convertedDate);
+            return convertedDate;
         }
     }
 }
