@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="70e55953ccb74c5db797e1dca8a71a79" Name="Diagram1">
+        <EntityTypeShape EntityType="EmployeeArrivalTrackerModel.Employee" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeeArrivalTrackerModel.EmployeeArrival" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeeArrivalTrackerModel.EmployeeTeam" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeeArrivalTrackerModel.Role" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeeArrivalTrackerModel.Team" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="EmployeeArrivalTrackerModel.FK_Employee_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="EmployeeArrivalTrackerModel.FK_EmployeeArrival_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="EmployeeArrivalTrackerModel.FK_EmployeeTeams_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="EmployeeArrivalTrackerModel.FK_EmployeeTeams_Team" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
