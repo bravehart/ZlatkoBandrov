@@ -1,0 +1,21 @@
+
+1. The rows 13 and 14: These settings should go in a configuration file.
+	string[] roles = new string[] { "Junior Developer", "Semi Senior Developer", "Senior Developer", "Principal", "Team Leader" };
+	string[] teams = new string[] { "Platform", "Sales", "Billing", "Mirage" };
+
+2. The rows from 24 to 26:
+	e.Name = all_lines_in_file[i].Split('\t')[0];
+	e.SurName = all_lines_in_file[i].Split('\t')[1];
+	e.Email = all_lines_in_file[i].Split('\t')[2];
+	
+Should be rewritten to 
+	jsRowData = all_lines_in_file[i].Split('\t');
+	e.Name = jsRowData[0];
+	e.SurName = jsRowData[1];
+	e.Email = jsRowData[2];
+	
+and the declaration of the variable string[] jsRowData = null; should be outside of the foreach body. Also there should be a check for index out of range for the array.
+
+3. For the rows from 54 to 67 I would use Json.NET library to generate the Json objects
+4. I would put the class JsonEmployee in a separate file
+5. There is no try catch block. The errors should be written somewhere
