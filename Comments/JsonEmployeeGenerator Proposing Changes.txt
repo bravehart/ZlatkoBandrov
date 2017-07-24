@@ -19,3 +19,4 @@ and the declaration of the variable string[] jsRowData = null; should be outside
 3. For the rows from 54 to 67 I would use Json.NET library to generate the Json objects
 4. I would put the class JsonEmployee in a separate file
 5. There is no try catch block. The errors should be written somewhere
+6. The code can be better formatted - there are a lot of no necessary white spaces

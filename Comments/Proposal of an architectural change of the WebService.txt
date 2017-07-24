@@ -1,0 +1,6 @@
+
+1. There are no checks for the parameters string date, string callback if they are empty strings or null
+2. I think that DateTime values should be transferred with Utc time and invariant culture between different systems
+3. Row 35: I would use local variables for all instances new Simulator(, ateTime.ParseExact(date.. It will be more readable and easy for debugging. It is the same for row 51.
+4. Again about row 51: Readin data from a file in a constructor of an object is very bad practice. This will slow the initialization of the object. Also I think that it will be better to read once the employee list in the beginning and to keep it in the ram memory. Reading from RAM is faster than reading from file but this is very specific decision and it depends on the situation and the architecture
+5. And also the classes public class Simulator, public class JsonEmployee, public class SimulationData should be move in separate code files
