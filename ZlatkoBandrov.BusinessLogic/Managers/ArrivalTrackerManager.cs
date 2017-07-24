@@ -147,19 +147,25 @@ namespace ZlatkoBandrov.BusinessLogic.Managers
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri(subscribeBaseUrl);
-                httpClient.DefaultRequestHeaders.Accept.Clear();
-                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                httpClient.DefaultRequestHeaders.Add("Accept-Client", "Fourth-Monitor");
+                try
+                {
+                    httpClient.BaseAddress = new Uri(subscribeBaseUrl);
+                    httpClient.DefaultRequestHeaders.Accept.Clear();
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    httpClient.DefaultRequestHeaders.Add("Accept-Client", "Fourth-Monitor");
 
-                HttpResponseMessage response = httpClient.GetAsync(subscribeEntryPointUrl).Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    CurrentToken = Utils.FromTokenResult(response.Content.ReadAsAsync<TokenResult>().Result);
+                    HttpResponseMessage response = httpClient.GetAsync(subscribeEntryPointUrl).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        CurrentToken = Utils.FromTokenResult(response.Content.ReadAsAsync<TokenResult>().Result);
+                    }
+                    else if (response.StatusCode == HttpStatusCode.Unauthorized)
+                    {
+                        CurrentToken = null;
+                    }
                 }
-                else if (response.StatusCode == HttpStatusCode.Unauthorized)
+                catch (Exception ex)
                 {
-                    CurrentToken = null;
                 }
             }
         }

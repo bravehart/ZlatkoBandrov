@@ -5,22 +5,44 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
 </p>
+
 <table class="table">
     <tr>
-        <th></th>
+        <th>Employee ID</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Teams</th>
+        <th>Age</th>
+        <th>Employee Arrivals</th>
     </tr>
-    @foreach (var item in Model)
+    @foreach (var item in Model.EmployeeDataItems)
     {
         <tr>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @item.EmployeeID
+            </td>
+            <td>
+                @item.FullName
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @item.Role
+            </td>
+            <td>
+                @item.Teams
+            </td>
+            <td>
+                @item.Age
+            </td>
+            <td>
+
             </td>
         </tr>
     }

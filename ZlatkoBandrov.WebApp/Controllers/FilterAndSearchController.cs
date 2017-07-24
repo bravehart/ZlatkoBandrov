@@ -21,7 +21,6 @@ namespace ZlatkoBandrov.WebApp.Controllers
         {
             var manager = new FilterDemoManager();
             var model = new FilterAndSearchModel();
-
             model.EmployeeDataItems = manager.GetEmployeeTableItems();
 
             return model;

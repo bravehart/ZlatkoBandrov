@@ -23,23 +23,31 @@ namespace ZlatkoBandrov.BusinessLogic.Managers
 
             List<int> employeeIDs = UnitOfWork.EmployeeArrivalRepository.AsQuery().Select(p => p.EmployeeID).Distinct().ToList();
             List<Employee> employeesList = UnitOfWork.EmployeeRepository.AsQuery().Where(e => employeeIDs.Contains(e.ID)).ToList();
-            EmployeeTableItem newEmployeeTableItem = new EmployeeTableItem();
+            EmployeeTableItem newEmployeeTableItem = null;
 
             foreach (var employee in employeesList)
             {
+                newEmployeeTableItem = new EmployeeTableItem();
                 newEmployeeTableItem.EmployeeID = employee.ID;
                 newEmployeeTableItem.Age = employee.Age;
                 newEmployeeTableItem.Email = employee.Email;
                 newEmployeeTableItem.FullName = string.Format("{0} {1}", employee.Name, employee.Surename);
 
+                // Add the employee role
                 if (employee.Role != null)
                 {
                     newEmployeeTableItem.Role = employee.Role.DisplayName;
                 }
-
+                // Add the employee teams
                 if (employee.EmployeeTeams != null && employee.EmployeeTeams.Any())
                 {
                     newEmployeeTableItem.Teams = string.Join(", ", employee.EmployeeTeams.Select(t => t.Team.DisplayName).ToArray());
+                }
+                // Check for tracked arrivals
+                if (employee.EmployeeArrivals != null && employee.EmployeeArrivals.Any())
+                {
+                    var arrivals = employee.EmployeeArrivals.Select(a => new EmployeeArrivalListItem { ArrivalTime = a.ArrivalTime }).ToList();
+                    newEmployeeTableItem.Arrivals.AddRange(arrivals);
                 }
 
                 list.Add(newEmployeeTableItem);
