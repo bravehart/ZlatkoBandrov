@@ -9,7 +9,7 @@ using ZlatkoBandrov.Entities.Models;
 
 namespace ZlatkoBandrov.BusinessLogic.Managers
 {
-    public class EmployeeManager
+    public class EmployeeManager : IDisposable
     {
         private readonly UnitOfWork UnitOfWork = new UnitOfWork();
 
@@ -56,5 +56,29 @@ namespace ZlatkoBandrov.BusinessLogic.Managers
                 UnitOfWork.Rollback();
             }
         }
+
+        #region Dispose Pattern
+
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    UnitOfWork.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
     }
 }

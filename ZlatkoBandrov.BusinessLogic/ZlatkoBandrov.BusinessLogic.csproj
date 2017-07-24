@@ -63,6 +63,7 @@
     <Compile Include="Converters\DAOConverter.cs" />
     <Compile Include="Managers\ArrivalTrackerManager.cs" />
     <Compile Include="Managers\EmployeeManager.cs" />
+    <Compile Include="Managers\FilterDemoManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

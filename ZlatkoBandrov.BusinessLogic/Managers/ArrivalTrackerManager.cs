@@ -12,7 +12,7 @@ using ZlatkoBandrov.BusinessLogic.Converters;
 
 namespace ZlatkoBandrov.BusinessLogic.Managers
 {
-    public class ArrivalTrackerManager
+    public class ArrivalTrackerManager : IDisposable
     {
         private readonly UnitOfWork UnitOfWork = new UnitOfWork();
 
@@ -68,7 +68,7 @@ namespace ZlatkoBandrov.BusinessLogic.Managers
                     if (employeeArrival != null && employeeArrival.ArrivalTime > DateTime.MinValue)
                     {
                         // This will get or create new employee in the database
-                        Employee employee = GetEmployeeOrCreate(employeeArrival.EmployeeID);
+                        Employee employee = GetEmployeeOrCreate(arrivalData.EmployeeId);
                         if (employee != null)
                         {
                             if (employee.ID > 0)
@@ -187,5 +187,29 @@ namespace ZlatkoBandrov.BusinessLogic.Managers
 
             return employeeRole;
         }
+
+        #region Dispose Pattern
+
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    UnitOfWork.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
     }
 }

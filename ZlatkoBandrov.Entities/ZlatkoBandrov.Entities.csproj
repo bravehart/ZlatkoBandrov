@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\EmployeeArrivalListItem.cs" />
+    <Compile Include="Models\EmployeeTableItem.cs" />
     <Compile Include="Models\JsonEmployee.cs" />
     <Compile Include="Models\EmployeeArrivalData.cs" />
     <Compile Include="Models\TokenData.cs" />

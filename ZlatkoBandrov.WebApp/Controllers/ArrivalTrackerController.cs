@@ -19,11 +19,10 @@ namespace ZlatkoBandrov.WebApp.Controllers
 
             // Get the request token and validate it with the current token
             string requestToken = Utils.GetRequestToken(Request);
-
             var manager = new ArrivalTrackerManager();
             if (!manager.ValidateToken(requestToken))
             {
-                return BadRequest("The token is not valid!");
+                return Unauthorized();
             }
 
             // Save the employee arrivals in the database
