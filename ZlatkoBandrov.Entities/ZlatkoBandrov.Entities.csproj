@@ -44,6 +44,7 @@
     <Compile Include="Models\EmployeeTableItem.cs" />
     <Compile Include="Models\JsonEmployee.cs" />
     <Compile Include="Models\EmployeeArrivalData.cs" />
+    <Compile Include="Models\SearchWithOrderModel.cs" />
     <Compile Include="Models\TokenData.cs" />
     <Compile Include="Models\TokenResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

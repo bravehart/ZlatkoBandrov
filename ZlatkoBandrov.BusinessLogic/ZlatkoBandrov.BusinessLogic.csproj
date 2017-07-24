@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\DAOConverter.cs" />
+    <Compile Include="Extensions\EmployeeTableListExtensions.cs" />
     <Compile Include="Managers\ArrivalTrackerManager.cs" />
     <Compile Include="Managers\EmployeeManager.cs" />
     <Compile Include="Managers\FilterDemoManager.cs" />

@@ -4,46 +4,50 @@
     ViewBag.Title = "Filter And Search Example";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section CustomStyle{
+    <link href="~/Content/custom-style.css" rel="stylesheet" />
+}
 
-<h2>@ViewBag.Title</h2>
+<h2 style="margin-bottom: 40px;">@ViewBag.Title</h2>
 
-<p>
-</p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <h4>Filter</h4>
+            <hr />
+            <div class="form-group">
+                @using (Html.BeginForm("Search", "FilterAndSearch", FormMethod.Post, new { id = "search-form" }))
+            {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="OrderBy" value="" />
+                    <input type="hidden" name="SortDirection" value="" />
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <label for="SearhTerms" class="control-label" style="display:inline;">Search box</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <input type="text" id="SearhTerms" name="SearhTerms" class="col-md-6 form-control" />
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" value="Search" class="btn btn-default" />
+                        </div>
+                    </div>
+                    <div class="row">&nbsp;</div>
+                }
+            </div>
+            <hr />
+        </div>
+    </div>
+</div>
 
-<table class="table">
-    <tr>
-        <th>Employee ID</th>
-        <th>Full Name</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th>Teams</th>
-        <th>Age</th>
-        <th>Employee Arrivals</th>
-    </tr>
-    @foreach (var item in Model.EmployeeDataItems)
-    {
-        <tr>
-            <td>
-                @item.EmployeeID
-            </td>
-            <td>
-                @item.FullName
-            </td>
-            <td>
-                @item.Email
-            </td>
-            <td>
-                @item.Role
-            </td>
-            <td>
-                @item.Teams
-            </td>
-            <td>
-                @item.Age
-            </td>
-            <td>
+<div class="row">
+    <div class="col-md-12" id="search-results-panel">
+        @{ Html.RenderPartial("FilterAndSearch/_RenderEmployeeArrivalsPartial", Model); }
+    </div>
+</div>
 
-            </td>
-        </tr>
-    }
-</table>
+@section scripts{
+    <script src="~/Scripts/demo-search-page.js"></script>
+}

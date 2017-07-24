@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZlatkoBandrov.DataAccess;
 using ZlatkoBandrov.DataAccess.Repositories;
 using ZlatkoBandrov.Entities.Models;
@@ -54,6 +52,32 @@ namespace ZlatkoBandrov.BusinessLogic.Managers
             }
 
             return list;
+        }
+
+        public SearchWithOrderModel ValidateFilter(SearchWithOrderModel filter = null)
+        {
+            if (filter == null || string.IsNullOrEmpty(filter.SearhTerms))
+            {
+                return null;
+            }
+
+            return filter;
+        }
+
+        public SearchWithOrderModel ValidateSorting(SearchWithOrderModel sortData = null)
+        {
+            if (sortData == null || string.IsNullOrEmpty(sortData.OrderBy))
+            {
+                return null;
+            }
+            else if (string.IsNullOrEmpty(sortData.SortDirection) ||
+                (!sortData.SortDirection.Equals("ASC", StringComparison.InvariantCultureIgnoreCase)
+                && (!sortData.SortDirection.Equals("DESC", StringComparison.InvariantCultureIgnoreCase))))
+            {
+                return null;
+            }
+
+            return sortData;
         }
 
         #region Dispose Pattern

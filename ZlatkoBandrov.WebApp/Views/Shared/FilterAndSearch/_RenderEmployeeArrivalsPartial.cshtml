@@ -1,0 +1,52 @@
+﻿@model ZlatkoBandrov.WebApp.Models.FilterAndSearchModel
+
+<table class="table">
+    <tr>
+        <th class="results-table-header">
+            Employee ID
+            <input type="hidden" value="EmployeeID" />
+        </th>
+        <th class="results-table-header">
+            Full Name
+            <input type="hidden" value="FullName" />
+        </th>
+        <th class="results-table-header">
+            Email
+            <input type="hidden" value="Email" />
+        </th>
+        <th class="results-table-header">
+            Role
+            <input type="hidden" value="Role" />
+        </th>
+        <th class="results-table-header">Teams</th>
+        <th class="results-table-header">
+            Age
+            <input type="hidden" value="Age" />
+        </th>
+        <th>Employee Arrivals</th>
+    </tr>
+    @foreach (var item in Model.EmployeeDataItems)
+    {
+        <tr>
+            <td>
+                @item.EmployeeID
+            </td>
+            <td>
+                @item.FullName
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                @item.Role
+            </td>
+            <td>
+                @item.Teams
+            </td>
+            <td>
+                @item.Age
+            </td>
+            <td></td>
+        </tr>
+    }
+</table>
